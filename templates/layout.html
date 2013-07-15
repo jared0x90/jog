@@ -1,0 +1,28 @@
+<!doctype html>
+<meta charset="utf-8">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<title>{% block title %}Jared's Blog{% endblock %}</title>
+{% block customhead %}{% endblock %}
+<nav>
+    <a href="">Newest</a> |
+    <a href="">Most Commented</a> |
+    <a href="">Most Viewed</a>
+</nav>
+<header>
+    <h1><a href="{{ url_for('index') }}">Jared's Blog</a></h1>
+    {% block subheading %}{% endblock %}
+</header>
+<section>
+{% block content %}{% endblock %}
+</section>
+<footer>
+    &copy; Jared De Blander. All rights reserved.<br>
+    <a href="http://flask.pocoo.org/">
+        <img
+            src="http://flask.pocoo.org/static/badges/powered-by-flask-s.png"
+            style="border:0"
+            alt="powered by Flask"
+            title="powered by Flask"
+        >
+    </a>
+</footer>
