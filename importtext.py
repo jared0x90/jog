@@ -20,7 +20,7 @@ if not os.path.isfile(dbname):
     sys.exit('Database: %s not found' % dbname)
 
 jog_db_conn = sqlite3.connect(dbname)
-c = jog_db_conn.cursor()
+jog_db_curs = jog_db_conn.cursor()
 
 with open (sys.argv[1], "r") as post:
     body = post.read()
@@ -29,7 +29,7 @@ print ("Inserting post \"%s\":\n%s" % (sys.argv[2], body))
 
 try:
     post_data = (sys.argv[2], body, int(time.time()))
-    c.execute("INSERT INTO posts(title, body, date_created) VALUES (?,?,?) ", post_data)
+    jog_db_curs.execute("INSERT INTO posts(title, body, date_created) VALUES (?,?,?) ", post_data)
     jog_db_conn.commit()
     print('DB write successful')
 except:

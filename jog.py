@@ -26,6 +26,22 @@ from flask import render_template
 from flask import request
 from flask import url_for
 
+import sqlite3
+import os.path
+import time
+
+##############################################################################
+# initiate db
+##############################################################################
+
+dbname = 'jog.db'
+
+if not os.path.isfile(dbname):
+    sys.exit('Database: %s not found' % dbname)
+
+jog_db_conn = sqlite3.connect(dbname)
+jog_db_curs = jog_db_conn.cursor()
+
 ##############################################################################
 # initiate flask
 ##############################################################################
