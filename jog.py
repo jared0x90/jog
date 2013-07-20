@@ -4,23 +4,41 @@ from flask import Flask
 from flask import render_template
 from flask import request
 from flask import url_for
+from flask import g
 
 import sqlite3
 import os.path
 import time
+import uuid
 
-# initiate db
-dbname = 'jog.db'
-
-if not os.path.isfile(dbname):
-    sys.exit('Database: %s not found' % dbname)
-
-jog_db_conn = sqlite3.connect(dbname)
-jog_db_curs = jog_db_conn.cursor()
-
+# configuration
+DATABASE = 'jog.db'
+DEBUG = True
+SECRET_KEY = uuid.uuid1()
+USERNAME = 'admin'
+PASSWORD = 'default'
 
 # initiate flask
 app = Flask(__name__, static_folder='static', static_url_path='/static')
+app.config.from_object(__name__)
+app.config.from_envvar('JOG_SETTINGS', silent=True)
+
+# check for the database
+if not os.path.isfile(app.config['DATABASE']):
+    sys.exit('Database: %s not found' % app.config['DATABASE'])
+
+def connect_db():
+    return sqlite3.connect(app.config['DATABASE'])
+
+@app.before_request
+def before_request():
+    g.db = connect_db()
+
+@app.teardown_request
+def teardown_request(exception):
+    db = getattr(g, 'db', None)
+    if db is not None:
+        db.close()
 
 # create routes
 @app.route("/")
