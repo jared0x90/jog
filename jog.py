@@ -1,7 +1,6 @@
 #!/usr/bin/env pypy
 
 # flask imports
-
 from flask import g
 from flask import Flask
 from flask import Markup
@@ -10,11 +9,9 @@ from flask import request
 from flask import url_for
 
 # markdown imports
-
 import markdown
 
 # standard imports
-
 import sqlite3
 import os.path
 import time
