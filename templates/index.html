@@ -3,7 +3,7 @@
     <div class="entries">
     {% for entry in entries %}
         <div class="entry">
-            <a href="#{{ entry.id }}"><h1>{{ entry.title }}</h1></a>
+            <a href="#{{ entry.id }}"><h1 class="shadow">{{ entry.title }}</h1></a>
             <div class="entry_date">{{ entry.date_created }}</div>
             <div>{{ entry.body|safe }}</div>
             <div><a href="#{{ entry.id }}">Comments</a></div>

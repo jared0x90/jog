@@ -1,5 +1,6 @@
 @import url(//fonts.googleapis.com/css?family=Rancho);
 @import url(//fonts.googleapis.com/css?family=Special+Elite);
+@import url(//fonts.googleapis.com/css?family=Julius+Sans+One|Libre+Baskerville:400,400italic);
 
 /*
 
@@ -11,7 +12,7 @@ TODO: Convert font-size to em where not already em
 
 *, body, html {
     font-family: verdana;
-    background-color: #eee;
+    background-color: #fff;
 }
 
 a {
@@ -22,7 +23,7 @@ a {
 nav, nav a {
     font-size: 0.9em;
     text-align: center;
-    font-family: 'Special Elite', verdana;
+    font-family: 'Julius Sans One', verdana;
 }
 
 section {
@@ -34,7 +35,7 @@ section {
 header h1, header a {
     margin-top: 25px;
     margin-bottom: 10px;
-    font-family: 'Special Elite', verdana;
+    font-family: 'Julius Sans One', verdana;
     font-size: 60px;
     text-align: center;
     text-shadow: 4px 4px 4px #aaa;
@@ -44,7 +45,7 @@ header h1, header a {
 
 header h2{
     margin-top: 5px;
-    font-family: 'Special Elite', verdana;
+    font-family: 'Julius Sans One', verdana;
     font-size: 30px;
     text-align: center;
     text-shadow: 3px 3px 3px #aaa;
@@ -52,11 +53,22 @@ header h2{
     text-decoration: none;
 }
 
+header {
+    margin-bottom: 30px;
+}
+
 footer {
     margin-top: 100px;
-    font-family: verdana;
-    font-size: x-small;
     text-align: center;
+}
+
+footer * {
+    font-size: 0.8em;
+    font-family: 'Julius Sans One', verdana;
+}
+
+.shadow{
+    text-shadow: 4px 4px 4px #aaa;
 }
 
 .entries{
@@ -67,10 +79,12 @@ footer {
     padding: 5px 5px 5px 5px;
     border-width: 1px;
     border-style: solid;
+    border-color: #ddd;
     box-shadow: 10px 10px 5px #888888;
 }
 
-.entry h1{
+.entry h1, .entry h2, .entry h3, .entry h4 {
+    font-family: 'Julius Sans One', verdana;
     margin: 0 0 0 0;
     padding: 0 0 0 0;
 }
