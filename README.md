@@ -6,6 +6,10 @@
 
 This is my simple blog project to learn more about Flask.
 
+## License
+
+The MIT License (MIT)
+
 ## Dependencies
 
  * SQLite3
