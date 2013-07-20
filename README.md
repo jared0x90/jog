@@ -20,7 +20,7 @@ The MIT License (MIT)
 
 Install your dependencies by runnning the following commands;
 
-    pip install flask
+    pip install Flask
     pip install markdown
 
 Create your database by running the following command:

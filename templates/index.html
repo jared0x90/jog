@@ -1,6 +1,9 @@
 {% extends "layout.html" %}
 {% block content %}
-    <ul class=entries>
-
-    </ul>
+    {% for entry in entries %}
+        <h1>{{ entry.title }}</h1>
+        <div>{{ entry.body|safe }}</div>
+    {% else %}
+        <em>Unbelievable.  No entries here so far</em>
+    {% endfor %}
 {% endblock %}

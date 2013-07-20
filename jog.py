@@ -1,10 +1,19 @@
 #!/usr/bin/env pypy
 
+# flask imports
+
+from flask import g
 from flask import Flask
+from flask import Markup
 from flask import render_template
 from flask import request
 from flask import url_for
-from flask import g
+
+# markdown imports
+
+import markdown
+
+# standard imports
 
 import sqlite3
 import os.path
@@ -43,7 +52,10 @@ def teardown_request(exception):
 # create routes
 @app.route("/")
 def index():
-    return render_template("index.html")
+    cur = g.db.execute('SELECT title, body FROM posts ORDER BY id desc')
+    entries = [dict(title=row[0], body=Markup(markdown.markdown(row[1]))) \
+              for row in cur.fetchall()]
+    return render_template('index.html', entries=entries)
 
 # run application
 if __name__ == "__main__":
