@@ -1,9 +1,15 @@
 {% extends "layout.html" %}
 {% block content %}
+    <div class="entries">
     {% for entry in entries %}
-        <h1>{{ entry.title }}</h1>
-        <div>{{ entry.body|safe }}</div>
+        <div class="entry">
+            <a href="#{{ entry.id }}"><h1>{{ entry.title }}</h1></a>
+            <div class="entry_date">{{ entry.date_created }}</div>
+            <div>{{ entry.body|safe }}</div>
+            <div><a href="#{{ entry.id }}">Comments</a></div>
+        </div>
     {% else %}
-        <em>Unbelievable.  No entries here so far</em>
+        <em>No entries so far.</em>
     {% endfor %}
+    </div>
 {% endblock %}

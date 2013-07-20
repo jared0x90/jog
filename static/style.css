@@ -58,3 +58,23 @@ footer {
     font-size: x-small;
     text-align: center;
 }
+
+.entries{
+    text-align: justify;
+}
+
+.entry {
+    padding: 5px 5px 5px 5px;
+    border-width: 1px;
+    border-style: solid;
+    box-shadow: 10px 10px 5px #888888;
+}
+
+.entry h1{
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+}
+
+.entry_date{
+    font-size: 0.8em;
+}

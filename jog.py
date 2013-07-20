@@ -49,9 +49,16 @@ def teardown_request(exception):
 # create routes
 @app.route("/")
 def index():
-    cur = g.db.execute('SELECT title, body FROM posts ORDER BY id desc')
-    entries = [dict(title=row[0], body=Markup(markdown.markdown(row[1]))) \
-              for row in cur.fetchall()]
+    cur = g.db.execute('SELECT title, body, id, date_created FROM posts ORDER BY id desc')
+    entries = [
+        dict(
+            title = row[0],
+            body = Markup(markdown.markdown(row[1])),
+            id = row[2],
+            date_created = row[3]
+        )
+        for row in cur.fetchall()
+    ]
     return render_template('index.html', entries=entries)
 
 # run application
