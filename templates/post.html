@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block content %}
+    <!-- begin facebook boilerplate -->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    <!-- end facebook Boilerplate -->
+
+    <div class="entries">
+        {% for entry in entries %}
+            <div class="entry">
+                <a href="#{{ entry.id }}"><h1 class="shadow">{{ entry.title }}</h1></a>
+                <div class="entry_date">{{ entry.date_created }}</div>
+                <div>{{ entry.body|safe }}</div>
+            </div>
+        {% else %}
+            <em>No entries so far.</em>
+        {% endfor %}
+        <h1>Comments</h1>
+        <div class="fb-comments" data-href="{{ puburl }}" data-width="470" data-num-posts="10"></div>
+    </div>
+{% endblock %}

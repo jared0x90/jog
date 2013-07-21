@@ -3,13 +3,13 @@
     <div class="entries">
     {% for entry in entries %}
         <div class="entry">
-            <a href="#{{ entry.id }}"><h1 class="shadow">{{ entry.title }}</h1></a>
+            <a href="{{ url_for('show_post', post_id = entry.id) }}"><h1 class="shadow">{{ entry.title }}</h1></a>
             <div class="entry_date">{{ entry.date_created }}</div>
             <div>{{ entry.body|safe }}</div>
             <div><a href="#{{ entry.id }}">Comments</a></div>
         </div>
     {% else %}
-        <em>No entries so far.</em>
+        <em>Entry not found.</em>
     {% endfor %}
     </div>
 {% endblock %}

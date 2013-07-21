@@ -21,9 +21,10 @@ import time
 import uuid
 
 # configuration
+PUBLIC_URL_BASE = 'http://www.jwd.me'
 DATABASE = 'jog.db'
 DEBUG = True
-SECRET_KEY = uuid.uuid1()
+SECRET_KEY = str(uuid.uuid1())
 USERNAME = 'admin'
 PASSWORD = 'default'
 
@@ -69,6 +70,29 @@ def index():
     ]
     return render_template('index.html', entries=entries)
 
+@app.route('/post/<int:post_id>')
+def show_post(post_id):
+    cur = g.db.execute('SELECT title, body, id, date_created FROM posts WHERE id = %s' % post_id)
+    entries = [
+        dict(
+            title = row[0],
+            body = Markup(markdown.markdown(row[1])),
+            id = row[2],
+            date_created = row[3]
+        )
+        for row in cur.fetchall()
+    ]
+    return render_template('post.html', entries=entries, puburl = PUBLIC_URL_BASE + '/post/' + str(entries[0]['id']))
+
+
+@app.route("/create")
+def create_post():
+    if not session.get('logged_in'):
+        flash('You must login before posting.')
+        return redirect(url_for('index'))
+    return render_template('create.html')
+
+
 @app.route('/add', methods=['POST'])
 def add_entry():
     if not session.get('logged_in'):
@@ -77,7 +101,27 @@ def add_entry():
                  [request.form['title'], request.form['text']])
     g.db.commit()
     flash('New entry was successfully posted')
-    return redirect(url_for('show_entries'))
+    return redirect(url_for('index'))
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    error = None
+    if request.method == 'POST':
+        if request.form['username'] != app.config['USERNAME']:
+            error = 'Invalid username'
+        elif request.form['password'] != app.config['PASSWORD']:
+            error = 'Invalid password'
+        else:
+            session['logged_in'] = True
+            flash('You were logged in')
+            return redirect(url_for('index'))
+    return render_template('login.html', error=error)
+
+@app.route('/logout')
+def logout():
+    session.pop('logged_in', None)
+    flash('You were logged out')
+    return redirect(url_for('index'))
 
 # run application
 if __name__ == "__main__":

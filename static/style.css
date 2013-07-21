@@ -32,6 +32,10 @@ section {
     margin: auto;
 }
 
+h1, h2, h3, h4 {
+    font-family: 'Julius Sans One', verdana;
+}
+
 header h1, header a {
     margin-top: 25px;
     margin-bottom: 10px;
@@ -67,6 +71,14 @@ footer * {
     font-family: 'Julius Sans One', verdana;
 }
 
+.flash {
+    text-align: center;
+    background: #cee5F5;
+    padding: 0.5em;
+    border: 1px solid #aacbe2;
+    margin-bottom: 1em;
+}
+
 .shadow{
     text-shadow: 4px 4px 4px #aaa;
 }
@@ -81,6 +93,7 @@ footer * {
     border-style: solid;
     border-color: #ddd;
     box-shadow: 10px 10px 5px #888888;
+    margin-bottom: 30px;
 }
 
 .entry h1, .entry h2, .entry h3, .entry h4 {
