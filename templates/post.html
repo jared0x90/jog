@@ -12,15 +12,11 @@
     <!-- end facebook Boilerplate -->
 
     <div class="entries">
-        {% for entry in entries %}
-            <div class="entry">
-                <a href="#{{ entry.id }}"><h1 class="shadow">{{ entry.title }}</h1></a>
-                <div class="entry_date">{{ entry.date_created }}</div>
-                <div>{{ entry.body|safe }}</div>
-            </div>
-        {% else %}
-            <em>No entries so far.</em>
-        {% endfor %}
+        <div class="entry">
+            <a href="#{{ entry.id }}"><h1 class="shadow">{{ entry.title }}</h1></a>
+            <div class="entry_date">{{ entry.date_created }}</div>
+            <div>{{ entry.body|safe }}</div>
+        </div>
         <h1>Comments</h1>
         <div class="fb-comments" data-href="{{ puburl }}" data-width="470" data-num-posts="10"></div>
     </div>

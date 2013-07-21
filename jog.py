@@ -72,17 +72,15 @@ def index():
 
 @app.route('/post/<int:post_id>')
 def show_post(post_id):
-    cur = g.db.execute('SELECT title, body, id, date_created FROM posts WHERE id = %s' % post_id)
-    entries = [
-        dict(
-            title = row[0],
-            body = Markup(markdown.markdown(row[1])),
-            id = row[2],
-            date_created = row[3]
-        )
-        for row in cur.fetchall()
-    ]
-    return render_template('post.html', entries=entries, puburl = PUBLIC_URL_BASE + '/post/' + str(entries[0]['id']))
+    cur = g.db.execute('SELECT title, body, id, date_created FROM posts WHERE id = ?', str(post_id))
+    row = cur.fetchone()
+    entry = dict(
+        title = row[0],
+        body = Markup(markdown.markdown(row[1])),
+        id = row[2],
+        date_created = row[3]
+    )
+    return render_template('post.html', entry=entry, puburl = PUBLIC_URL_BASE + '/post/' + str(entry['id']))
 
 
 @app.route("/create")
