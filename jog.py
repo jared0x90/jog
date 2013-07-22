@@ -1,6 +1,7 @@
 #!/usr/bin/env pypy
 
 # flask imports
+from flask import abort
 from flask import flash
 from flask import Flask
 from flask import g
@@ -92,13 +93,18 @@ def create_post():
 
 
 @app.route('/add', methods=['POST'])
-def add_entry():
+def add_post():
     if not session.get('logged_in'):
         abort(401)
-    g.db.execute('insert into entries (title, text) values (?, ?)',
-                 [request.form['title'], request.form['text']])
+    g.db.execute(
+        'insert into posts (title, body, date_created) values (?, ?, ?)', [
+            request.form['title'],
+            request.form['body'],
+            int(time.time())
+        ]
+    )
     g.db.commit()
-    flash('New entry was successfully posted')
+    flash('New post was successfully created.')
     return redirect(url_for('index'))
 
 @app.route('/login', methods=['GET', 'POST'])

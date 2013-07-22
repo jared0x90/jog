@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block content %}
+<form action="{{ url_for('add_post') }}" method="POST">
+    <table>
+        <tr>
+            <th style="text-align:left">Title</th>
+            <td style="text-align:left"><input type="text" name="title" style="width: 400px;"></td>
+        </tr>
+        <tr>
+            <th style="text-align:left">Body</th>
+            <td style="text-align:left"><textarea name="body" style="width: 400px; height:300px;"></textarea></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit"></td>
+        </tr>
+    </table>
+</form>
+{% endblock %}
