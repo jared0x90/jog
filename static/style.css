@@ -32,8 +32,18 @@ section {
     margin: auto;
 }
 
-code {
+pre {
+    background-color: #F9F9F9;
+    border: 1px dashed #2F6FAB;
+    color: black;
+    line-height: 1.1em;
+    padding: 1em;
+}
+
+code{
+    background-color: #F9F9F9;
     font-family: courier;
+    color: black;
 }
 
 h1, h2, h3, h4 {
