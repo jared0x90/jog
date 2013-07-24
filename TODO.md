@@ -1,7 +1,8 @@
 # ToDo Items
+## Post Functions
 * Edit Post
 * Delete Post
-* Custimizable Nav
-* * Enable/disable nav boxes
-* * Custom title per nav box
-* * Custom links per nav box
+## Nav Functions
+* Enable/disable nav boxes
+* Custom title per nav box
+* Custom links per nav box
