@@ -2,6 +2,8 @@
 ## Post Functions
 * Edit Post
 * Delete Post
+
+
 ## Nav Functions
 * Enable/disable nav boxes
 * Custom title per nav box
