@@ -83,6 +83,20 @@ def show_post(post_id):
     )
     return render_template('post.html', entry=entry, puburl = PUBLIC_URL_BASE + '/post/' + str(entry['id']))
 
+@app.route('/edit/<int:post_id>')
+def edit_post(post_id):
+    if not session.get('logged_in'):
+        flash('You must login before editing a post.')
+        return redirect(url_for('index'))
+    cur = g.db.execute('SELECT title, body, id, date_created FROM posts WHERE id = ?', str(post_id))
+    row = cur.fetchone()
+    entry = dict(
+        title = row[0],
+        body = row[1],
+        id = row[2],
+        date_created = row[3]
+    )
+    return render_template('edit.html', entry=entry)
 
 @app.route("/create")
 def create_post():
