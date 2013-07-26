@@ -98,6 +98,13 @@ def edit_post(post_id):
     )
     return render_template('edit.html', entry=entry)
 
+@app.route('/edit_submit', methods=['POST'])
+def edit_submit():
+    if not session.get('logged_in'):
+        flash('You must login before submitting an edited post.')
+        return redirect(url_for('index'))
+
+
 @app.route("/create")
 def create_post():
     if not session.get('logged_in'):
