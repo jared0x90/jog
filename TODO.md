@@ -1,6 +1,5 @@
 # ToDo Items
 ## Post Functions
-* Edit Post
 * Delete Post
 
 

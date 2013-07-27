@@ -103,6 +103,16 @@ def edit_submit():
     if not session.get('logged_in'):
         flash('You must login before submitting an edited post.')
         return redirect(url_for('index'))
+    g.db.execute(
+        'UPDATE posts SET title = ?, body = ? WHERE id = ?', [
+            request.form['title'],
+            request.form['body'],
+            request.form['id']
+        ]
+    )
+    g.db.commit()
+    flash('Your edit has been submitted.')
+    return redirect(url_for('index'))
 
 
 @app.route("/create")
@@ -118,7 +128,7 @@ def add_post():
     if not session.get('logged_in'):
         abort(401)
     g.db.execute(
-        'insert into posts (title, body, date_created) values (?, ?, ?)', [
+        'INSERT INTO posts (title, body, date_created) VALUES (?, ?, ?)', [
             request.form['title'],
             request.form['body'],
             int(time.time())

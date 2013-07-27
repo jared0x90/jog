@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
-<form action="" method="POST">
+<form action="{{ url_for('edit_submit') }}" method="POST">
+    <input type="hidden" name="id" value="{{ entry.id }}">
     <table>
         <tr>
             <th style="text-align:left">Title</th>
