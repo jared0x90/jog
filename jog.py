@@ -112,7 +112,7 @@ def edit_submit():
     )
     g.db.commit()
     flash('Your edit has been submitted.')
-    return redirect(url_for('index'))
+    return redirect(url_for('show_post', post_id = int(request.form['id'])))
 
 
 @app.route("/create")
