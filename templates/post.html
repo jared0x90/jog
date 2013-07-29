@@ -17,7 +17,8 @@
             <div class="entry_date">{{ entry.date_created }}</div>
             <div>{{ entry.body|safe }}</div>
             {% if session.logged_in %}
-            <div><a href="{{ url_for('edit_post', post_id = entry.id) }}">Edit</a></div>
+            <div><a href="{{ url_for('edit_post', post_id = entry.id) }}">Edit</a> |
+            <a href="">Delete</a></div>
             {% endif %}
         </div>
         <a name="comments"><h1>Comments</h1></a>
