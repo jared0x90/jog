@@ -65,7 +65,7 @@ def index():
             title = row[0],
             body = Markup(markdown.markdown(row[1])),
             id = row[2],
-            date_created = row[3]
+            date_created = time.strftime("%a, %d %b %Y %H:%M:%S +0000", row[3])
         )
         for row in cur.fetchall()
     ]
@@ -114,6 +114,11 @@ def edit_submit():
     flash('Your edit has been submitted.')
     return redirect(url_for('show_post', post_id = int(request.form['id'])))
 
+@app.route("/delete")
+def delete_post():
+    if not session.get('logged_in'):
+        flash('You must login before deleting a post.')
+        return redirect(url_for('index'))
 
 @app.route("/create")
 def create_post():
