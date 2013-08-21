@@ -65,7 +65,7 @@ def index():
             title = row[0],
             body = Markup(markdown.markdown(row[1])),
             id = row[2],
-            date_created = time.strftime("%a, %d %b %Y %H:%M:%S +0000", row[3])
+            date_created = time.ctime(row[3])
         )
         for row in cur.fetchall()
     ]
@@ -79,7 +79,7 @@ def show_post(post_id):
         title = row[0],
         body = Markup(markdown.markdown(row[1])),
         id = row[2],
-        date_created = row[3]
+        date_created = time.ctime(row[3])
     )
     return render_template('post.html', entry=entry, puburl = PUBLIC_URL_BASE + '/post/' + str(entry['id']))
 
