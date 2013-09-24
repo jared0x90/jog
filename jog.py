@@ -73,7 +73,7 @@ def index():
 
 @app.route('/post/<int:post_id>')
 def show_post(post_id):
-    cur = g.db.execute('SELECT title, body, id, date_created FROM posts WHERE id = ?', str(post_id))
+    cur = g.db.execute('SELECT title, body, id, date_created FROM posts WHERE id = ?', [str(post_id)])
     row = cur.fetchone()
     entry = dict(
         title = row[0],
@@ -165,5 +165,4 @@ def logout():
 
 # run application
 if __name__ == "__main__":
-    app.debug = True
-    app.run(host = '0.0.0.0', port = 80)
+    app.run()

@@ -14,11 +14,6 @@ This is my simple blog project to learn more about Flask.
 ### License
 Jog is licensed under the MIT License (MIT)
 
-##Installation
-### PyPy
-I've been developing this using PyPy. Should be able to run in standard CPython without issue
-should you so desire.
-
 ### Dependencies
 Install your dependencies by runnning the following commands:
 
