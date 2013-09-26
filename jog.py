@@ -17,15 +17,18 @@ import markdown
 
 # standard imports
 import sqlite3
-import os.path
 import time
 import uuid
+import os
 
 # configuration
 PUBLIC_URL_BASE = 'http://www.jwd.me'
 DATABASE = 'jog.db'
 DEBUG = True
-SECRET_KEY = str(uuid.uuid1())
+if "JOG_SECRET_KEY" in os.environ:
+    SECRET_KEY = JOG_SECRET_KEY
+else:
+    SECRET_KEY = 'DEFAULT_SECRET_KEY'
 USERNAME = 'admin'
 PASSWORD = 'default'
 
