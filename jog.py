@@ -22,7 +22,7 @@ import uuid
 import os
 
 # configuration
-PUBLIC_URL_BASE = 'http://www.jwd.me'
+PUBLIC_URL_BASE = 'http://nginx.jwd.me'
 DATABASE = 'jog.db'
 DEBUG = True
 if "JOG_SECRET_KEY" in os.environ:
